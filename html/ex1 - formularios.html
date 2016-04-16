@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <title>Exercício 1 - Formulário</title>
+      <meta charset="utf-8">
+  </head>
+
+  <body>
+      <h1>Formulário com validações</h1>
+      <form id="form" method="post">
+          <label for="nome">Nome: </label>
+          <input id="nome"
+            type="text"
+            size="50"
+            required
+            autofocus
+            placeholder="Informe o nome"
+            title="Informe o nome">
+          <br>
+
+          <label for="email">E-mail: </label>
+          <input id="email"
+            type="email"
+            size="60"
+            required
+            placeholder="Informe o e-mail"
+            title="Informe o e-mail">
+          <br>
+
+          <label for="cpf">CPF: </label>
+          <input id="cpf"
+            type="text"
+            required
+            size="15"
+            pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}"
+            placeholder="Informe o CPF"
+            title="Informe o CPF">
+          <br>
+
+          <label for="senha">Senha: </label>
+          <input id="senha"
+            type="password"
+            size="20"
+            required
+            placeholder="Informe a senha"
+            title="Informe a senha">
+          <br>
+
+          <label for"sexo">Sexo: </label>
+          <input name="sexo"
+            type="radio"
+            required
+            value="masculino"
+            checked>Masculino
+          <input name="sexo"
+            type="radio"
+            required
+            value="feminino">Feminino
+          <br>
+
+          <label for="idade">Idade: </label>
+          <input id="idade"
+            type="number"
+            required
+            min="0"
+            max="99"
+            size="2"
+            placeholder="Informe a idade"
+            title="Informe a idade">
+          <br>
+
+          <label for="dataNascimento">Data de nasicmento: </label>
+          <input id="dataNascimento"
+            type="date"
+            required
+            placeHolder="Informe a data de nascimento"
+            title="Data de nascimento">
+          <br>
+
+          <br><br>
+          <button type="submit">Enviar</button>
+      </form>
+  </body>
+</html>
