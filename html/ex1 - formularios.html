@@ -46,7 +46,7 @@
             title="Informe a senha">
           <br>
 
-          <label for"sexo">Sexo: </label>
+          <label for="sexo">Sexo: </label>
           <input name="sexo"
             type="radio"
             required
@@ -56,6 +56,18 @@
             type="radio"
             required
             value="feminino">Feminino
+          <br>
+
+          <label>Situação: </label>
+          <input list="situacoes"
+            type="dataList"
+            required>
+
+          <datalist id="situacoes">
+              <option value="Solteiro">
+              <option value="Casado">
+              <option value="Viúvo">
+          </datalist>
           <br>
 
           <label for="idade">Idade: </label>
