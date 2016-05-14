@@ -1,0 +1,137 @@
+body {
+	background: linear-gradient(to top, #f1f1f1, #cccccc);
+	font-family: Tahoma, Verdana;
+}
+
+#caixa1, #caixa2, #caixa3 {
+	width: 200px;
+	height: 200px;
+	background: red;
+	margin: 10px;
+}
+
+#caixa1 {
+	padding: 20px;
+	border: 5px dashed #000;
+	background: green;
+}
+
+#caixa2 {
+	border: 10px solid #000;
+	padding: 20px;
+
+	/* Essa propriedade serve para não deixar a caixa aumentar de tamanho. 
+	Ou seja, o tamanho fica fixo e tudo é renderizado para dentro do componente. */
+	box-sizing: border-box; 
+}
+
+#conteudo {
+	width: 900px;
+	margin: auto;
+}
+
+#principal {
+	width: 600px;
+	float: left;
+	background: green;
+	box-sizing: border-box;
+}
+
+#coluna {
+	width: 300px;
+	float: right;
+	background: yellow;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+img {
+	width: 280px;
+}
+
+#megan {
+	opacity: 0.5;
+	transition: all 0.5s ;
+}
+
+#megan:hover {
+	opacity: 1;
+	width: 500px;
+}
+
+#bacon {
+	transition: all 1s;
+}
+
+#bacon:hover {
+	transform: scale(2);
+}
+
+nav {
+	width: 300px;
+	background: #ccc;
+	border: 1px solid #000;
+}
+
+/* Formata somente os links que estão dentro do nav */
+nav a {
+	width: 60px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+	color: #333;
+	transition: all 0.6s;
+}
+
+nav a:hover {
+	background: #000;
+	color: #FFF;
+	transform: scale(1.1);
+}
+
+.rotationalElement {
+	transition: all 1s;
+}
+
+.rotationalElement:hover {
+	transform: rotate(120deg);
+}
+
+.clear {
+	clear: both;	/* ignora os floats utilizados acima dele */
+}
+
+#fiat {
+	animation-name: fiat;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	position: relative;
+}
+
+@keyframes fiat {
+	0% {
+		left: 0px;	/* Vai ficar perto do lado esquerdo da tela */
+		transform: scale(0.5);
+		top: 0px;
+	}
+
+	/* 50% do tempo (baseado no animation-duration configurado acima) */
+	50% {
+		left: 400px;
+		transform: scale(1);
+		top: 0px;
+	}
+
+	100% {
+		left: 700px;
+		transform: scale(0.1);
+		top: -200px;
+	}
+}
+
+.botaoFixo {
+	position: fixed;
+}

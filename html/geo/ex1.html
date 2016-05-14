@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocalização Exercício 1</title>
+	<meta charset="utf-8">
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<script type="text/css">
+		#mapa { 
+			width: 640px; 
+			height: 480px;
+			border:  1px solid #000;
+    	}
+    </script>
+</head>
+<body>
+
+	<h1>Exemplo de Geolocalização</h1>
+	<button type="button" onclick="limpar()">Limpar</button>
+	<button type="button" onclick="getLocation()">Carregar Info</button>
+	<button type="button" onclick="carregarMapa()">Carregar Mapa</button>
+
+	<div id="msg">
+		Mensagem
+	</div>
+
+	<div id="imagemMapa">
+		Aqui iremos carregar a imagem do mapa
+	</div>
+
+	<div id="mapa">
+		Aqui iremos carregar o mapa
+	</div>
+
+	<script type="text/javascript">
+		function limpar() {
+			document.getElementById("msg").innerHTML = "Mensagem";
+			document.getElementById("imagemMapa").innerHTML = "";
+		}
+
+		// Função para geolocalização
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				alert("Não suportado");
+				document.getElementById("msg").innerHTML = "Seu navegador não suporta geolocalização";
+			}
+		}
+
+		function showPosition(position) {
+			var longitude = position.coords.longitude;
+			var latitude = position.coords.latitude;
+			var latLong = new google.maps.LatLng(latitude, longitude);
+
+			var mapOptions = {
+				zoom: 14,
+				center: latLong,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+			var marker = new google.maps.Marker({position: latLong, map: map, title: "Você está aqui"});
+		}
+
+		function carregarMapa() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(carregarMapaComPosicao);
+			} else {
+				alert("Não suportado");
+				document.getElementById("msg").innerHTML = "Seu navegador não suporta geolocalização";
+			}
+		}
+
+		function carregarMapaComPosicao(position) {
+			var longitude = position.coords.longitude;
+			var latitude = position.coords.latitude;
+			var latLong = new google.maps.LatLng(latitude, longitude);
+
+			var mapOptions = {
+				zoom: 14,
+				center: latLong,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+			var marker = new google.maps.Marker({position: latLong, map: map, title: "Você está aqui"});
+		}
+
+	</script>
+</body>
+</html>

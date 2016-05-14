@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animações com CSS</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="animacao.css">
+</head>
+<body>
+
+	<h1>Menu</h1>
+	<nav>
+		<a href="http://tidinha.wordpress.com">Tidinha</a>
+		<a href="http://www.uol.com.br">UOL</a>
+		<a href="http://vendaseusprodutos.com.br">Venda seus produtos</a>
+	</nav>
+	<br>
+
+	<h1>Rotação</h1>
+	<img src="bola.png" id="bola" class="rotationalElement">
+	<br>
+
+	<h1>Animação</h1>
+	<img src="147.png" id="fiat"><br>
+	<button type="button" onclick="animar()">Play / Pause</button>
+
+	<script type="text/javascript">
+		function animar() {
+			var obj = document.getElementById("fiat");
+			var estado = obj.style.animationPlayState;
+			
+			if ((estado == "") || (estado == "running")) {
+				obj.style.animationPlayState = "paused";
+			} else {
+				obj.style.animationPlayState = "running";
+			}
+		}
+	</script>
+
+	<h1>Animações com CSS3</h1>
+
+	<div id="caixa1">Texto</div>
+	<div id="caixa2">Texto 2</div>
+	<div id="caixa3">Texto 3</div>
+
+	<div id="conteudo">
+		<div id="principal">
+			<h2>Conteúdo Principal</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div id="coluna">
+			Conteúdo da Coluna
+			<img src="tidinha.jpg">
+		</div>
+	</div>
+
+	<div class="clear"></div>
+	<h1>Tamanho</h1>
+	<img src="megan.jpg" id="megan"><br>
+	<img src="bacon.jpg" id="bacon">
+
+</body>
+</html>

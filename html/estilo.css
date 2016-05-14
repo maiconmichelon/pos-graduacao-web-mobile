@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans&subset=latin,latin-ext);
+
+body {
+	background: radial-gradient(blue, red);
+}
+
+h1 {
+	font: 1.5em Arial, Verdana;
+	color: red;
+	text-shadow: 5px 2px 20px #000;
+}
+
+p {
+	font: 1.2em 'Noto Sans', Verdana;
+	color: green;
+}
+
+a {
+	text-shadow: 5px 2px 20px #000;
+}
+
+img {
+	border: 1px solid #000;
+	padding: 5px 5px 20px 5px;
+	border-radius: 1000px;
+	background: white;
+	width: 600px;
+	opacity: 0.5;
+}

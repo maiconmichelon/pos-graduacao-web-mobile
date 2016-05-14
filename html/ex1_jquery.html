@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aprendendo jQuery</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="animacao.css">
+	<script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="jquery.cycle2.min.js"></script>
+	<script type="text/javascript">
+		/* Será executado somente quando o que estiver dentro quando o DOM estiver pronto */
+		$(document).ready(function() {
+			// Necessário usar o # porque é o id do button
+			$("#botao").click(function () {
+				alert("Botão apertado!");
+			});
+
+			$("#mostrar").click(function () {
+				$("#foto").show("slow");
+			});
+
+			$("#esconder").click(function () {
+				$("#foto").hide("fast");
+			});
+
+			$("#animar").click(function () {
+				$("#foto").toggle();
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Programando com jQuery</h1>
+	<button type="button" id="botao">Aperte-me!</button>
+
+	<h1>Testes com a Megan Fox</h1>
+	<button type="button" id="mostrar">Mostrar Megan Fox</button>
+	<button type="button" id="esconder">Esconder Megan Fox</button>
+	<button type="button" id="animar">Mostrar / Esconder Mega Fox</button>
+	<br><br>
+	<img src="megan.jpg" id="foto">
+	<br><br><br><br><br><br>
+
+	<h1>Como se usa um Pluging</h1>
+	<div class="cycle-slideshow">
+		<div class="cycle-caption"></div>-
+		<img src="megan.jpg">
+		<img src="bacon.jpg">
+		<img src="bola.png">
+	</div>
+	
+</body>
+</html>
