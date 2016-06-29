@@ -1,0 +1,32 @@
+<p>Bem vindo, <?php echo $this->usuario ?></p>
+
+<h2>Estados</h2>
+<ul>
+    <?php foreach ($this->estados as $estado) { ?>
+      <li>
+        <a href="<?php echo $this->url(array('action' => 'estado', 'idestado' => $estado['idestado'])); ?>">
+            <?php echo $estado['sigla_estado'] ?> - <?php echo $estado['nome_estado'] ?>
+        </a>
+      </li>
+  <?php } ?>
+</ul>
+
+<h2>Cidades</h2>
+<table border="1">
+    <thead>
+        <tr>
+          <td>Estado</td>
+          <td>Cidade</td>
+          <td>População</td>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->cidades as $cidade) { ?>
+      <tr>
+          <td><?php echo $cidade['sigla_estado'] ?></td>
+          <td><?php echo $cidade['nome_cidade'] ?></td>
+          <td><?php echo $cidade['populacao'] ?></td>            
+      </tr>
+  <?php } ?>
+    </tbody>
+</table>
