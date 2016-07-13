@@ -1,0 +1,15 @@
+<h2>Estado</h2>
+
+<h3>
+    <?php echo $this->estado['sigla_estado']; ?> - 
+    <?php echo $this->estado['nome_estado']; ?>
+</h3>
+
+<table border="1">
+    <?php foreach ($this->cidades as $cidade) { ?>
+    <tr>
+        <td><?php echo $cidade['nome_cidade'] ?></td>
+        <td><?php echo $cidade['populacao'] ?></td>
+    </tr>
+    <?php } ?>
+</table>

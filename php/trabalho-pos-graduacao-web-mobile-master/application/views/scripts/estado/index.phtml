@@ -1,0 +1,28 @@
+<h1>Estados</h1>
+
+<?php $this->mensagem(); ?>
+
+<p>[<a href="<?php echo $this->url(array('action' => 'create')); ?>">novo</a>]</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <td>Estado</td>
+      <td>Sigla</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+      <?php foreach ($this->estados as $estado) { ?>
+        <tr>
+          <td><?php echo $estado['nome_estado']; ?></td>
+          <td><?php echo $estado['sigla_estado']; ?></td>
+          
+          <td>
+            [<a href="<?php echo $this->url(array('action' => 'update', 'idestado' => $estado['idestado'])); ?>">editar</a>]
+            [<a href="<?php echo $this->url(array('action' => 'delete', 'idestado' => $estado['idestado'])); ?>">apagar</a>]
+          </td>
+        </tr>
+    <?php } ?>
+  </tbody>
+</table>

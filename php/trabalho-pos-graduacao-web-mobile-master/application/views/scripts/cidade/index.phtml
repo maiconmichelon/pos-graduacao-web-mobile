@@ -1,0 +1,32 @@
+<h1>Cidades</h1>
+
+<?php $this->mensagem(); ?>
+
+<p>[<a href="<?php echo $this->url(array('action' => 'create')); ?>">novo</a>]</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <td>Estado</td>
+      <td>Cidade</td>
+      <td>População</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+      <?php foreach ($this->cidades as $cidade) { ?>
+        <tr>
+          <td><?php echo $cidade['sigla_estado']; ?></td>
+          <td><?php echo $cidade['nome_cidade']; ?></td>
+          <td><?php echo $cidade['populacao']; ?></td>
+          <td>
+            <a href="<?php echo $this->url(array('action' => 'update', 'idcidade' => $cidade['idcidade'])); ?>">editar</a>
+          </td>
+          <td>
+            <a href="<?php echo $this->url(array('action' => 'delete', 'idcidade' => $cidade['idcidade'])); ?>">apagar</a>
+          </td>
+        </tr>
+    <?php } ?>
+  </tbody>
+</table>
