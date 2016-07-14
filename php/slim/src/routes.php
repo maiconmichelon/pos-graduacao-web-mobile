@@ -2,6 +2,8 @@
 // Routes
 
 /* @var $app \Slim\App */
+
+/* post */
 $app->get('/posts', function ($request, $response, $args) {
     $tab = new Application_Model_DbTable_Post();
     $posts = $tab->fetchAll()->toArray();
@@ -71,6 +73,7 @@ $app->delete('/posts/{id}', function($request, $response, $args) {
     return $response->withJson('Sucesso');
 });
 
+/* categorias */
 $app->get('/categorias', function($request, $response, $args) {
     $tabela = new Application_Model_DbTable_Categoria();
     $categorias = $tabela->fetchAll()->toArray();
@@ -157,3 +160,6 @@ $app->put('/categoria', function(Slim\Http\Request $request, $response, $args) {
     
     return $response->withJson($dados);
 });
+
+/* estado */
+
