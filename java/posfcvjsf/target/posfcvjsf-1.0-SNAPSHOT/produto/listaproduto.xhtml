@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h2>Lista de Produtos</h2>
+            <h:form>
+                <p:dataTable value="#{produtoControle.listaTodos()}"
+                             paginator="true"
+                             rows="5"
+                             var="p">
+                    <p:column headerText="Nome" filterBy="#{p.nome}" filterMatchMode="contains">
+                        #{p.nome}
+                    </p:column>
+                    <p:column headerText="Descrição" filterBy="#{p.descricao}" filterMatchMode="contains">
+                        #{p.descricao}
+                    </p:column>
+                    <p:column headerText="Grupo" filterBy="#{p.grupoProduto.nome}" filterMatchMode="contains">
+                        #{p.grupoProduto.nome}
+                    </p:column>
+                    <p:column headerText="Estoque" filterBy="#{p.estoque}" filterMatchMode="contains">
+                        #{p.estoque}
+                    </p:column>
+                    <p:column headerText="Preço" filterBy="#{p.preco}" filterMatchMode="contains">
+                        <h:outputText value="#{p.preco}" converter="#{produtoControle.moneyConverter}"/>
+                    </p:column>
+                    <p:column headerText="Operações">
+                        <p:commandButton icon="ui-icon-pencil" actionListener="#{produtoControle.editar(p)}" action="editaproduto" ajax="false"/>
+                        <p:commandButton icon="ui-icon-closethick" actionListener="#{produtoControle.remover(p)}" action="listaproduto" ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+                <p:button value="Voltar" outcome="/index"/>
+                <p:commandButton value="Novo" action="editaproduto" actionListener="#{produtoControle.novo()}" ajax="false"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

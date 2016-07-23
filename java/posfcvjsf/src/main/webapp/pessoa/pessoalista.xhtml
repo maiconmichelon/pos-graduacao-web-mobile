@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1>Lista de Pessoas</h1>
+            <h:form>
+                <p:dataTable value="#{pessoaControle.listaPessoas()}" 
+                             var="obj"
+                             paginator="true"
+                             rows="10">
+                    <p:column headerText="Nome" filterBy="#{obj.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.nome}"/>
+                    </p:column>
+                    <p:column headerText="Documento" filterBy="#{obj.documento}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.documento}"/>
+                    </p:column>
+                    <p:column headerText="Endereço" filterBy="#{obj.endereco}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.endereco}"/>
+                    </p:column>
+                    <p:column headerText="Numero" filterBy="#{obj.numero}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.numero}"/>
+                    </p:column>
+                    <p:column headerText="Telefone" filterBy="#{obj.telefone}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.telefone}"/>
+                    </p:column>
+                    <p:column headerText="Cidade" filterBy="#{obj.cidade.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.cidade.nome} - #{obj.cidade.estado.sigla}"/>
+                    </p:column>
+                    <p:column headerText="Operações" width="100">
+                        <p:commandButton icon="ui-icon-closethick" 
+                                         actionListener="#{pessoaControle.remover(obj)}" 
+                                         action="pessoalista" 
+                                         ajax="false"
+                                         onclick="if (!confirm('Deseja excluir este registro?')) return false;"/>
+                        <p:commandButton icon="ui-icon-pencil" 
+                                         action="#{pessoaControle.editar(obj)}" 
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Nova Pessoa Fisica" 
+                                 action="pessoafisicaedita" 
+                                 actionListener="#{pessoaFisicaControle.novo()}"  ajax="false"/>
+                <p:commandButton value="Nova Pessoa Juridica" 
+                                 action="pessoajuridicaedita" 
+                                 actionListener="#{pessoaJuridicaControle.novo()}"  ajax="false"/>
+                <p:button value="Voltar" outcome="/index"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

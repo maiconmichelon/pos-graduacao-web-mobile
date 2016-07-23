@@ -1,0 +1,27 @@
+services.msc
+iniciar serviço do mysql
+nova unidade de persistência (cria persistence.xml e glassfish-resources.xml)
+limpar e construir
+
+
+pra configurar o banco:
+- iniciar o serviço usando o services.msc;
+- iniciar o serviço no netbeans;
+- nova unidade de persistência, posfcvjsfPU, nova fonte de dados, posfcvjsfJDNI, criar com o banco previamente configurado;
+- colocar as duas linhas no persistence.xml:
+<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+<property name="hibernate.hbm2ddl.auto" value="update"/>
+
+
+
+-- Para migrar para o Tomcat com CDI
+Transaction
+InterceptorTransaction
++ 1 classe criada
+
+mapeamento no persistence.xml
+
+de Stateless foi pra Transactional
+de PersistenceContext foi pra Inject
+de ManagedBean foi pra Named
+de EJB foi pra Inejct

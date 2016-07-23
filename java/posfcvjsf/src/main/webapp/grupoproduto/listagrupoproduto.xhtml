@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h2>Lista de Grupo de Produtos</h2>
+            <h:form>
+                <p:dataTable value="#{grupoProdutoControle.listaTodos()}"
+                             paginator="true"
+                             rows="5"
+                             var="gp">
+                    <p:column headerText="Nome" filterBy="#{gp.nome}" filterMatchMode="contains">
+                        #{gp.nome}
+                    </p:column>
+                    <p:column headerText="Grupo de Produto" filterBy="#{gp.grupoProduto.nome}" filterMatchMode="contains">
+                        #{gp.grupoProduto.nome}
+                    </p:column>
+                    <p:column headerText="Operações">
+                        <p:commandButton icon="ui-icon-pencil" actionListener="#{grupoProdutoControle.editar(gp)}" action="editagrupoProduto" ajax="false"/>
+                        <p:commandButton icon="ui-icon-closethick" actionListener="#{grupoProdutoControle.remover(gp)}" action="listagrupoProduto" ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+                <p:button value="Voltar" outcome="/index"/>
+                <p:commandButton value="Novo" action="editagrupoproduto" actionListener="#{grupoProdutoControle.novo()}" ajax="false"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

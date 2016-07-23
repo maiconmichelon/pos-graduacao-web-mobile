@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1>Lista de Vendas</h1>
+            <h:form>
+                <p:dataTable value="#{vendaControle.lista}" 
+                             var="obj"
+                             paginator="true"
+                             rows="10">
+                    <p:column headerText="Data" filterBy="#{obj.dataVenda}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.dataVenda}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" 
+                                               timeZone="America/Sao_Paulo"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Cliente" filterBy="#{obj.pessoa.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.pessoa.nome}"/>
+                    </p:column>
+                    <p:column headerText="Valor Total" filterBy="#{obj.valorTotal}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.valorTotal}" converter="#{vendaControle.moneyConverter}"/>
+                    </p:column>
+                    <p:column headerText="Operações" width="100">
+                        <p:commandButton icon="ui-icon-closethick" 
+                                         actionListener="#{vendaControle.remover(obj)}" 
+                                         action="vendalista" 
+                                         ajax="false"
+                                         onclick="if (!confirm('Deseja excluir este registro?'))
+                                                     return false;"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Novo" 
+                                 action="vendaedita" 
+                                 actionListener="#{vendaControle.novo()}"  ajax="false"/>
+                <p:button value="Voltar" outcome="/index"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

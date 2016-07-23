@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema FCV</title>
+        <h:outputScript library="js" name="/mascaraMonetaria/Parsers.js" />
+        <h:outputScript library="js" name="/mascaraMonetaria/JavaScriptUtil.js" />
+        <h:outputScript library="js" name="/mascaraMonetaria/InputMask.js" />   
+        <script language="JavaScript">
+            function mascaraMonetaria(arg) {
+                //Set up the NumberMasks
+                var separadorDecimal = ",";
+                var separadorMilhar = ".";
+
+                var formato = new NumberParser(2, separadorDecimal, separadorMilhar, true);
+                formato.currencySymbol = "R$";
+                formato.useCurrency = true;
+                formato.allowNegative = false;
+                formato.currencyInside = true;
+
+                if (arg.className.indexOf('mascaraMonetaria') == -1) {
+                    var mascaraMonetariaFinal = new NumberMask(formato, arg, 20);
+                    mascaraMonetariaFinal.leftToRight = true;
+                    arg.setAttribute('autocomplete', 'off');
+                    arg.className += ' mascaraMonetaria';
+                }
+            }
+        </script> 
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">  
+            <p:layoutUnit position="north" resizable="true" 
+                          closable="false" collapsible="false" size="90">                                      
+                <p align="right">
+                    <h:form>                            
+                        <table border="0">
+                            <tr><td align="center" width="2500px">
+                                    <h:outputText value="Sistema Web Mobile" style="font-size: xx-large"/>
+                                </td><td align="center" width="300px">
+                                    <p:selectOneMenu value="#{sistemaControle.temas}">
+                                        <f:selectItems value="#{sistemaControle.listaTemas}" var="t" itemLabel="#{t.descricao}" itemValue="#{t}"/>
+                                    </p:selectOneMenu>
+                                    <p:commandButton action="index" ajax="false" icon="ui-icon-image"/>
+                                </td></tr>
+                        </table>
+                    </h:form>
+                </p>                
+                <!--                <p:panelGrid columns="2" styleClass="semBorda">
+                                    <h:graphicImage value="/imagens/logo.png" width="80"/><h:outputText value="Sistema de Confecção" style="font-size: xx-large"/> 
+                                </p:panelGrid>                -->
+            </p:layoutUnit>  
+            <p:layoutUnit position="south" size="30" style="text-align: center">  
+                <p align="center">Todos os direitos reservados.</p>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="west" size="180" 
+                          header="Menu" resizable="false" 
+                          closable="false" collapsible="true">  
+                <h:form>  
+                    <p:panelMenu style="width:170px">  
+                        <p:submenu label="Cadastros">  
+                            <p:menuitem value="Pessoa" action="/pessoa/pessoalista" ajax="false"/>
+                            <p:menuitem value="Produto" action="/produto/listaproduto" ajax="false"/>
+                            <p:menuitem value="Grupo de Produto" action="/grupoproduto/listagrupoproduto" ajax="false"/>
+                            <p:menuitem value="Estado" action="/estado/estadolista" ajax="false"/>
+                            <p:menuitem value="Cidade" action="/cidade/cidadelista" ajax="false"/>
+                        </p:submenu>  
+                        <p:submenu label="Movimentos">                              
+                            <p:menuitem value="Compra" action="/compra/compralista" ajax="false"/>
+                            <p:menuitem value="Venda" action="/venda/vendalista" ajax="false"/>
+                        </p:submenu>  
+                        <p:submenu label="Relatórios" >  
+                            <p:menuitem value="Clientes" action="#" ajax="false"/>
+                            <p:menuitem value="Produtos" action="#" ajax="false"/>
+                            <p:menuitem value="Fluxo de Caixa" action="#" ajax="false"/>
+                        </p:submenu>                        
+                    </p:panelMenu>
+                </h:form>  
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center">                  
+                <ui:insert id="corpo" name="body">Seja bem vindo!</ui:insert>          
+            </p:layoutUnit>  
+
+        </p:layout> 
+    </h:body>
+</html>
+

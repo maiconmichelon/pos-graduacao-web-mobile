@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1>Lista de Estados</h1>
+            <h:form>
+                <p:dataTable value="#{estadoControle.lista}" 
+                             var="est"
+                             paginator="true"
+                             rows="10">
+                    <p:column headerText="Nome" filterBy="#{est.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{est.nome}"/>
+                    </p:column>
+                    <p:column headerText="Sigla" filterBy="#{est.sigla}" filterMatchMode="contains">
+                        <h:outputText value="#{est.sigla}"/>
+                    </p:column>
+                    <p:column headerText="Operações" width="100">
+                        <p:commandButton icon="ui-icon-closethick" 
+                                         actionListener="#{estadoControle.remover(est)}" 
+                                         action="estadolista" 
+                                         ajax="false"
+                                         onclick="if (!confirm('Deseja excluir este registro?'))
+                                                     return false;"/>
+                        <p:commandButton icon="ui-icon-pencil" 
+                                         actionListener="#{estadoControle.setEstado(est)}" 
+                                         action="estadoedita" 
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Novo" 
+                                 action="estadoedita" 
+                                 actionListener="#{estadoControle.novo()}"  ajax="false"/>
+                <p:button value="Voltar" outcome="/index"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

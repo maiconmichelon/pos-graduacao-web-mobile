@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1>Lista de Cidades</h1>
+            <h:form>
+                <p:dataTable value="#{cidadeControle.lista}" 
+                             var="obj"
+                             paginator="true"
+                             rows="10">
+                    <p:column headerText="Nome" filterBy="#{obj.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.nome}"/>
+                    </p:column>
+                    <p:column headerText="Estado" filterBy="#{obj.estado.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.estado.nome} - #{obj.estado.sigla}"/>
+                    </p:column>
+                    <p:column headerText="Operações" width="100">
+                        <p:commandButton icon="ui-icon-closethick" 
+                                         actionListener="#{cidadeControle.remover(obj)}" 
+                                         action="cidadelista" 
+                                         ajax="false"
+                                         onclick="if (!confirm('Deseja excluir este registro?'))
+                                                     return false;"/>
+                        <p:commandButton icon="ui-icon-pencil" 
+                                         actionListener="#{cidadeControle.setCidade(obj)}" 
+                                         action="cidadeedita" 
+                                         ajax="false"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Novo" 
+                                 action="cidadeedita" 
+                                 actionListener="#{cidadeControle.novo()}"  ajax="false"/>
+                <p:button value="Voltar" outcome="/index"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="controle" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:treeTable value="#{grupoProdutoControle.root1}"
+                     var="obs" 
+                     selectionMode="single"
+                     selection="#{cc.attrs.controle.noGrupo}" 
+                     style="margin-top:0">
+            <f:facet name="header">
+                Grupo de Produtos
+            </f:facet>
+            <p:column headerText="Name">
+                <h:outputText value="#{obs.nome}" />
+            </p:column>                        
+        </p:treeTable>
+    </cc:implementation>
+</html>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1>Movimento de Venda</h1>
+            <h:form>
+                <p:messages autoUpdate="true" showDetail="true" showSummary="true"/>
+                <p:panelGrid columns="2">
+                    Data:<p:calendar value="#{vendaControle.venda.dataVenda}" 
+                                     pattern="dd/MM/yyyy"
+                                     locale="pt_BR"
+                                     required="true"
+                                     requiredMessage="A data da venda é obrigatório!"
+                                     />
+                    Cliente:<p:autoComplete value="#{vendaControle.venda.pessoa}"
+                                            required="true" 
+                                            requiredMessage="O cliente é obrigatório!"
+                                            id="pessoa"
+                                            completeMethod="#{vendaControle.listaPessoas}"
+                                            var="p"
+                                            itemLabel="#{p.nome}"
+                                            itemValue="#{p}"
+                                            forceSelection="true"
+                                            converter="#{vendaControle.pessoaConverter}"
+                                            />                                      
+                </p:panelGrid>
+                <p:panel header="Itens da Venda" id="painelItens">
+                    Produto:<p:autoComplete value="#{vendaControle.itensVenda.produto}"
+                                            id="produto"
+                                            completeMethod="#{vendaControle.listaProdutos}"
+                                            var="p"
+                                            itemLabel="#{p.nome} - #{p.preco}"
+                                            itemValue="#{p}"
+                                            forceSelection="true"   
+                                            converter="#{vendaControle.produtoConverter}"
+                                            />
+                    Quantidade:<p:inputText value="#{vendaControle.itensVenda.quantidade}"/>
+                    <p:commandButton value="Adicionar" 
+                                     actionListener="#{vendaControle.addItem()}"
+                                     ajax="true"
+                                     update="painelItens"
+                                     />
+                    <p:dataTable value="#{vendaControle.venda.itensVendas}"
+                                 paginator="true"
+                                 rows="10"
+                                 var="obj"
+                                 >
+                        <p:column headerText="Produto">
+                            <h:outputText value="#{obj.produto.nome}"/>
+                        </p:column>
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{obj.quantidade}"/>
+                        </p:column>
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{obj.preco}" converter="#{vendaControle.moneyConverter}"/>
+                        </p:column>                        
+                        <p:column headerText="SubTotal">
+                            <h:outputText value="#{obj.subTotal}" converter="#{vendaControle.moneyConverter}"/>
+                        </p:column>
+                        <p:column headerText="Remover">
+                            <p:commandButton icon="ui-icon-closethick" 
+                                             actionListener="#{vendaControle.removeItem(obj)}"                                              
+                                             ajax="false"
+                                             />
+                        </p:column>
+                    </p:dataTable>
+                    <h:outputText value="Total: " 
+                                         style="font-size: x-large;color: red;"
+                                         />  
+                    <h:outputText value="#{vendaControle.venda.valorTotal}" converter="#{vendaControle.moneyConverter}"
+                                         style="font-size: x-large;color: red;"
+                                         />  
+                </p:panel>
+                <p:commandButton value="Salvar" 
+                                 actionListener="#{vendaControle.salvar()}" 
+                                 action="vendalista" 
+                                 ajax="false"/>
+                <p:commandButton value="Voltar" action="vendalista" ajax="false" immediate="true"/>            
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
