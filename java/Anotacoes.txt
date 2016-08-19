@@ -3,7 +3,6 @@ iniciar serviço do mysql
 nova unidade de persistência (cria persistence.xml e glassfish-resources.xml)
 limpar e construir
 
-
 pra configurar o banco:
 - iniciar o serviço usando o services.msc;
 - iniciar o serviço no netbeans;
